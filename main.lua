@@ -3,27 +3,28 @@
 -- Created by: Matsuru Hoshi
 -- Created on: Apr 3, 2019
 --
--- This file will play with if statements
+-- This file will check your age and see if you are deemed worthy of watching a movie for a certain audience.
 -----------------------------------------------------------------------------------------
 
-local button = display.newRect( 160, 400, 100, 60)
+local button = display.newRect( 160, 400, 200, 100)
 
-local textBox = native.newTextField( 160, 200, 200, 60)
-textBox.id = 'text box'
+local textField = native.newTextField( 160, 200, 100, 40)
+textField.id = "text field"
 
-local output = display.newText( "", 160, 300, "Times New Roman", 20)
+local output = display.newText( "", 100, 100, 200, 200, "Times New Roman", 25)
 output:setFillColor( 1, 1, 1)
 
+local function CheckAge( event )
 
-local function Check( event )
+local age = tonumber(textField.text)
 
-local input = tonumber(textBox.text)
-
-	if (input >= 0) then
-		output.text = "It's positive!"
-	elseif (input <= 0) then
-		output.text = "It's negative!"
+	if (age >= 17) then
+		output.text = "You can watch an R rated movie alone."
+	elseif (age >= 13 ) then
+		output.text = "You can watch PG-13 movies alone."
+	else
+		output.text = "You can watch G rated movies alone or you need parent supervision."
 	end
 end
 
-button:addEventListener( "touch", Check)
+button:addEventListener( "touch", CheckAge)
